@@ -5,7 +5,7 @@ import pandas as pd
 import base64
 import os
 
-st.set_page_config(page_title="ELECTROMÁRÍN - Cálculos Eléctricos REBT", page_icon="⚡", layout="wide")
+st.set_page_config(page_title="ELECTROMARÍN - Cálculos Eléctricos REBT", page_icon="⚡", layout="wide")
 
 # Prevenir que el traductor automático del navegador corrompa el DOM de React (NotFoundError: removeChild)
 st.markdown("""
@@ -1933,7 +1933,7 @@ with st.sidebar:
                     padding: 14px; border-radius: 12px; margin-bottom: 14px; 
                     border: 1.5px solid #0284c7; box-shadow: 0 4px 16px rgba(2, 132, 199, 0.25); text-align: center;">
             <div style="font-size: 18px; font-weight: 900; color: #38bdf8; letter-spacing: 0.8px; display: flex; align-items: center; justify-content: center; gap: 8px;">
-                <span>⚡</span> ELECTROMÁRÍN
+                <span>⚡</span> ELECTROMARÍN
             </div>
             <div style="color: #ffffff; font-size: 13.5px; font-weight: 800; letter-spacing: 0.5px; margin-top: 3px;">REBT PRO</div>
             <div style="color: #94a3b8; font-size: 11px; margin-top: 6px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; padding: 0 4px;">
