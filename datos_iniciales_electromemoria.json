@@ -1,0 +1,62 @@
+{
+  "version": "2.0",
+  "usuario": {
+    "id": 1,
+    "email": "alvarosanchezm2006@gmail.com",
+    "username_windows": "Alvaro",
+    "password_hash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+    "nombre_instalador": "Álvaro Marín",
+    "nombre_empresa": "ELECTROMEMORIA MARÍN S.L.",
+    "nif_cif": "B-30000000",
+    "num_licencia_rebt": "REBT-30/15892",
+    "categoria_rebt": "Instalador Especialista (IBTE)",
+    "registro_industrial": "RII-30/009999",
+    "direccion": "Av. Juan Carlos I, s/n",
+    "localidad": "Murcia",
+    "telefono": "+34 600 000 000",
+    "email_contacto": "alvarosanchezm2006@gmail.com",
+    "logo_base64": null,
+    "iban": null,
+    "google_id": "google_alvarosanchezm2006@gmail.com",
+    "avatar_url": null,
+    "fecha_creacion": "2026-11-07 16:00:00"
+  },
+  "clientes": [
+    {
+      "id": 1,
+      "usuario_id": 1,
+      "nombre_completo": "Cliente Ejemplo - Vivienda Unifamiliar",
+      "nif_cif": "12345678Z",
+      "telefono": "+34 611 223 344",
+      "email": "cliente@ejemplo.es",
+      "direccion_suministro": "Calle Mayor, 15",
+      "localidad": "Murcia",
+      "cups": "ES0021000000000000AA",
+      "referencia_catastral": "9872023VH5797S0001WX",
+      "tipo_inmueble": "Vivienda",
+      "notas": "Expediente de prueba inicial ElectroMemoria Marín",
+      "fecha_creacion": "2026-11-07 16:00:00",
+      "usuario_email": "alvarosanchezm2006@gmail.com",
+      "codigo_postal": "30001",
+      "municipio": "Murcia",
+      "provincia": "Murcia",
+      "distribuidora": "i-DE (Iberdrola)",
+      "potencia_contratada_kw": "5.75",
+      "tension_suministro": "Monofásica 230V"
+    }
+  ],
+  "proyectos": [
+    {
+      "id": 1,
+      "usuario_id": 1,
+      "cliente_id": 1,
+      "nombre_proyecto": "MTD Vivienda Grado Básico 5.75 kW",
+      "modulo": "Memoria Técnica (MTD 30)",
+      "datos_json": "{\"mtd_tipo_inst_sel\": \"Vivienda (Grado Electrificación Básico)\", \"mtd_in_tit_nom\": \"Cliente Ejemplo - Vivienda Unifamiliar\", \"mtd_in_pot_inst\": 5750.0}",
+      "resumen_potencia_o_importe": "5.75 kW | Monofásico | Murcia",
+      "fecha_guardado": "2026-11-07 16:00:00",
+      "usuario_email": "alvarosanchezm2006@gmail.com",
+      "cliente_nombre": "Cliente Ejemplo - Vivienda Unifamiliar"
+    }
+  ]
+}

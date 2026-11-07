@@ -1,0 +1,13 @@
+streamlit
+pandas
+openpyxl
+matplotlib
+reportlab
+pymupdf
+toml
+Pillow
+requests
+python-docx
+gTTS
+ezdxf
+
