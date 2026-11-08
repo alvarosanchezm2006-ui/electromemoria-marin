@@ -2465,17 +2465,28 @@ def renderizar():
                 t_letra = tramos_tags[idx_c] if idx_c < len(tramos_tags) else f"T{idx_c+1}"
                 p_cw = float(c_it.get("potencia", 2300))
                 l_cm = float(c_it.get("longitud", 15))
-                cdt_cp = float(c_it.get("cdt", 1.10))
-                cdt_ctot = cdt_di_val + cdt_cp
                 m_sec_c = re.search(r'(\d+(?:\.\d+)?)', str(c_it.get("seccion", "2.5")))
-                sec_c = m_sec_c.group(1) if m_sec_c else "2.5"
+                sec_c_str = m_sec_c.group(1) if m_sec_c else "2.5"
+                sec_c_val = float(sec_c_str)
                 tubo_c = str(c_it.get("tubo", "M20"))
                 c_nom = str(c_it.get("nombre", f"C{idx_c+1}"))
                 es_c_tri = ("4x" in str(c_it.get("seccion", "")) or "3P" in c_nom or "trifásic" in c_nom.lower())
                 ib_c = p_cw / (1.73205 * 400.0) if es_c_tri else p_cw / 230.0
                 es_alumbrado = "alumbrado" in c_nom.lower() or "iluminación" in c_nom.lower() or "luz" in c_nom.lower()
-                limite_c = 3.0 if es_alumbrado else 5.0
-                cumple_c = (cdt_ctot <= limite_c)
+                # REBT ITC-BT-19: limite interior alumbrado=3%, fuerza=5%
+                # limite total (DI + interior): alumbrado=4.5%, fuerza=6.5%
+                limite_interior = 3.0 if es_alumbrado else 5.0
+                limite_total = 1.50 + limite_interior
+                # Calcular caida de tension del circuito interior desde formula real
+                # formula: cdt% = (k * P * L * 100) / (gamma * S * V^2)
+                # k=2 monofasico, k=1 trifasico; gamma=44 S/m*mm2 (Cu XLPE 90C)
+                gamma_c = 44.0  # Cu/XLPE 90C (H07Z1-K)
+                k_c = 1.0 if es_c_tri else 2.0
+                v_c = 400.0 if es_c_tri else 230.0
+                cdt_cp = round((k_c * p_cw * l_cm * 100.0) / (gamma_c * sec_c_val * (v_c ** 2)), 2)
+                cdt_ctot = round(cdt_di_val + cdt_cp, 2)
+                # Cumple si interior <= limite_interior Y total <= limite_total
+                cumple_c = (cdt_cp <= limite_interior) and (cdt_ctot <= limite_total)
                 if not cumple_c:
                     todos_cumplen = False
 
@@ -2485,10 +2496,10 @@ def renderizar():
                     "Potencia (W)": f"{p_cw:,.0f} W",
                     "Ib (A)": f"{ib_c:.1f} A",
                     "Long. (m)": f"{l_cm:.0f} m",
-                    "Sección": f"{sec_c} mm² Cu",
+                    "Sección": f"{sec_c_str} mm² Cu",
                     "ΔV Parcial": f"{cdt_cp:.2f}%",
                     "ΔV Total": f"{cdt_ctot:.2f}%",
-                    "Límite REBT": f"≤ {limite_c:.1f}%",
+                    "Límite Total REBT": f"≤ {limite_total:.1f}%",
                     "Estado": "✅ Conforme" if cumple_c else "⚠️ Supera límite",
                     "Conductor": "H07Z1-K 450/750V (AS)",
                     "Tubo": tubo_c
